@@ -9,7 +9,7 @@ import random
 #initalize the sensor
 ultra_sonic = HCSR04(trigger_pin = 13, echo_pin = 22)
 
-# Initialize the buzzer pin (GPIO-33)
+#Initialize the buzzer pin (GPIO-33)
 buzzer = PWM(Pin(33))
 
 # Initialize hardware SPI

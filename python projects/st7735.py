@@ -171,10 +171,10 @@ class TFT(object) :
       return
 
     #Make a size either from single value or 2 elements.
-    if (type(aSize) == int) or (type(aSize) == float):
+    if isinstance(aSize, (int, float)):
       wh = (aSize, aSize)
     else:
-      wh = aSize
+      wh = (aSize[0], aSize[1])
 
     px, py = aPos
     width = wh[0] * aFont["Width"] + 1
@@ -903,21 +903,21 @@ class TFT(object) :
     self.cs(1)
 
 def maker(  ) :
-  t = TFT(1, "X1", "X2")
+  t = TFT(1, "X1", "X2", "X3")
   print("Initializing")
   t.initr()
   t.fill(0)
   return t
 
 def makeb(  ) :
-  t = TFT(1, "X1", "X2")
+  t = TFT(1, "X1", "X2", "X3")
   print("Initializing")
   t.initb()
   t.fill(0)
   return t
 
 def makeg(  ) :
-  t = TFT(1, "X1", "X2")
+  t = TFT(1, "X1", "X2", "X3")
   print("Initializing")
   t.initg()
   t.fill(0)
