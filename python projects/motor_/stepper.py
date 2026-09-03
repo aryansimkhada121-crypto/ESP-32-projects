@@ -1,8 +1,8 @@
 from machine import Pin, SPI, PWM 
 import time
 from hcsr04 import HCSR04
-import st7735
-import sysfont
+import st7735 as st7735
+import sysfont as sysfont
 
 #initalize the ultrasonic sensor
 ultra_sonic = HCSR04(trigger_pin = 26, echo_pin = 25)
