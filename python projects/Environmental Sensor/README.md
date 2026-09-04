@@ -32,6 +32,6 @@ A modular, IoT-enabled plant monitoring system built with MicroPython, an ESP32,
 
 ### 2. Wi-Fi Brownout / Reboot Loops
 
-* **The Error:** The ESP32 crashes or reboots spontaneously (`Guru Meditation Error` or silent loop) the moment Wi-Fi connection is attempted.
+* **The Error:** The ESP32 crashes or reboots spontaneously the moment Wi-Fi connection is attempted.
 * **The Cause:** High transient current draw spikes during Wi-Fi radio initialization pulling down the board's input voltage.
 * **The Fix:** Added explicit transmit power capping in the initialization code (`wlan.config(txpower=8.5)`) to reduce peak current spikes during handshake.
