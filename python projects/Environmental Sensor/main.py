@@ -41,7 +41,7 @@ class TemperatureClassifier:
 
 class MoistureClassifier:
 
-    def __init__(self, low_limit = 15, high_limit = 75):
+    def __init__(self, low_limit = 20, high_limit = 65):
         self.low_limit = low_limit
         self.high_limit = high_limit
         self.current_state = "UNKNOWN"
@@ -104,6 +104,28 @@ class SystemController:
         #multi warning check
         active_warnings = []
 
+        #temp 
+        if temp_state == "HOT":
+            active_warnings.append("TEMP: TOO HOT")
+        elif temp_state == "COLD":
+            active_warnings.append("TEMP: TOO COLD")
+
+        #moisture
+        if moisture_state == "WET":
+            active_warnings.append("SOIL: TOO WET")
+        elif moisture_state == "DRY":
+            active_warnings.append("SOIL: TOO DRY")
+
+        #light
+        if light_state == "SCORCHING":
+            active_warnings.append("LIGHT: SCORCHING")
+
+        #humidity
+        if humidity_state == "HIGH":
+            active_warnings.append("HUMIDITY: HIGH")
+        elif humidity_state == "LOW":
+            active_warnings.append("HUMIDITY: LOW")
+
         # Priority 1: Dry Soil + High Temp
         #If the plant is dry and scorching, regular watering is not enough; it requires urgent intervention.
         if moisture_state == "DRY" and temp_state == "HOT":
@@ -158,7 +180,7 @@ ldr_sensor = ADC_SENSOR(pin_num=36, name ="LDR")
 dht_sensor = dht.DHT11(Pin(13))
 
 #Initialize cloud handler Adafruit IO credentials
-cloud = Cloud(username="username", aio_key="aiokey")
+cloud = Cloud(username="", aio_key="")
 last_upload = 0
 upload_rate = 30
 
@@ -186,7 +208,7 @@ def connect_wifi():
         pass
         
     time.sleep(1)
-    wlan.connect('wifiname', 'password')
+    wlan.connect('', '')
     
     timeout = 0
     while not wlan.isconnected() and timeout < 10:

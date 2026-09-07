@@ -32,7 +32,7 @@ def connect_wifi():
         pass
         
     time.sleep(1)
-    wlan.connect('BELL894', 'CA5756DF91AF')
+    wlan.connect('', '')
     
     timeout = 0
     while not wlan.isconnected() and timeout < 10:
